@@ -346,30 +346,27 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/26/python-datetime/" >
+        <a class="abstract-title" href = "/2021/02/21/2020-graph-degree/" >
             
-                <span>python Datetime与时间戳转换</span>
+                <span>图中的各种中心度的解释</span>
         </a>
         <div class="abstract-content">
-            时间到timestamp转换123from datetime import datetimed = datetime(2019,02,25)timestamp = datetime.timestamp(d)
-
-timestamp到时间格式的转换1234from datetime import datetimetimestamp = 1545730073dt_object = datetime.fromtimestamp(timestamp)
-
+            1. 说明在社交网络分析的技术中，图论中的中心度(degree)使用的非常广泛，中心度用于衡量节点与其他节点的关系，并衡量节点在各种情况下的重要程度，本文就汇总了下图论中的各种中心度的说明和用途。
+2. 中心性2.1 度中心性度中心性（Degree Centrality）是在网络分析中刻画节点中心性（Centrality）的最直接度量指标。一个节点的节点度越大就意味着这个节点的度中心性越高，该节点在网络中就越重要。
+2.1 接近中心性接近中心性(Closeness Centrality)需要考量每个结点到其它结点的最短路的平均长度。也就是说，对于一个结点而言，它距离其它结点越近，那么它的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/26</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "graph">graph</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "datetime">datetime</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "时间戳">时间戳</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "度">度</a>
     
 </div>
             
@@ -716,11 +713,7 @@ timestamp到时间格式的转换1234from datetime import datetimetimestamp = 15
     
         <span class="sidebar-tag-name" data-tags="graph"><span class="iconfont-archer">&#xe606;</span>graph</span>
     
-        <span class="sidebar-tag-name" data-tags="degree"><span class="iconfont-archer">&#xe606;</span>degree</span>
-    
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
-    
-        <span class="sidebar-tag-name" data-tags="Centos"><span class="iconfont-archer">&#xe606;</span>Centos</span>
     
         <span class="sidebar-tag-name" data-tags="Ambari"><span class="iconfont-archer">&#xe606;</span>Ambari</span>
     
@@ -736,8 +729,6 @@ timestamp到时间格式的转换1234from datetime import datetimetimestamp = 15
     
         <span class="sidebar-tag-name" data-tags="HDFS"><span class="iconfont-archer">&#xe606;</span>HDFS</span>
     
-        <span class="sidebar-tag-name" data-tags="rack awareness"><span class="iconfont-archer">&#xe606;</span>rack awareness</span>
-    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
@@ -746,33 +737,17 @@ timestamp到时间格式的转换1234from datetime import datetimetimestamp = 15
     
         <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
     
-        <span class="sidebar-tag-name" data-tags="dashboard"><span class="iconfont-archer">&#xe606;</span>dashboard</span>
-    
         <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
-        <span class="sidebar-tag-name" data-tags="datetime"><span class="iconfont-archer">&#xe606;</span>datetime</span>
-    
-        <span class="sidebar-tag-name" data-tags="时间戳"><span class="iconfont-archer">&#xe606;</span>时间戳</span>
-    
         <span class="sidebar-tag-name" data-tags="rails"><span class="iconfont-archer">&#xe606;</span>rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="URL路由"><span class="iconfont-archer">&#xe606;</span>URL路由</span>
-    
-        <span class="sidebar-tag-name" data-tags="POST"><span class="iconfont-archer">&#xe606;</span>POST</span>
-    
-        <span class="sidebar-tag-name" data-tags="PUT"><span class="iconfont-archer">&#xe606;</span>PUT</span>
     
         <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
     
-        <span class="sidebar-tag-name" data-tags="准确率"><span class="iconfont-archer">&#xe606;</span>准确率</span>
-    
-        <span class="sidebar-tag-name" data-tags="召回率"><span class="iconfont-archer">&#xe606;</span>召回率</span>
-    
-        <span class="sidebar-tag-name" data-tags="混淆矩阵"><span class="iconfont-archer">&#xe606;</span>混淆矩阵</span>
+        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
