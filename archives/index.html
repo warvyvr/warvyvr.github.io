@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-CN">
     <!-- title -->
 
 
@@ -210,7 +210,7 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
-    <a class="home-link" href=/>James的空间</a>
+    <a class="home-link" href=/>TechTalk</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -346,7 +346,36 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/02/21/2020-graph-degree/" >
+        <a class="abstract-title" href = "/2021/02/21/math-test/" >
+            
+                <span>如何在Hexo中添加数学公式</span>
+        </a>
+        <div class="abstract-content">
+            试了几个不同的方法，最终还是这个文章上写的管用。Link
+
+PS: 和我用的一样的主题。
+
+数学公式：1234567$$\begin&#123;equation&#125; \label&#123;eq2&#125;\begin&#123;aligned&#125;a &amp;&#x3D; b + c \\  &amp;&#x3D; d + e + f + g \\  &amp;&#x3D; h + i\end&#123;aligned&#125;\end&#123;equation&#125;$$
+\begin{equation} \label{eq2}
+\begin{aligned...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/09/19/graph-degree/" >
             
                 <span>图中的各种中心度的解释</span>
         </a>
@@ -358,7 +387,7 @@
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/19</span>
             </div>
             <!-- tags  -->
             
@@ -804,7 +833,7 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
         
             
-                <a href="http://warvyvr.github.io" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="http://www.github.com/warvyvr" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
@@ -1013,9 +1042,22 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 13
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -1031,7 +1073,7 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2021/02/21/2020-graph-degree/" >图中的各种中心度的解释</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2021/02/21/math-test/" >如何在Hexo中添加数学公式</a>
         </li>
     
     
@@ -1042,6 +1084,11 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/2020/09/19/graph-degree/" >图中的各种中心度的解释</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1242,7 +1289,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
 </html>
 
 

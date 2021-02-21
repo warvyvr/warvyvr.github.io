@@ -22,7 +22,7 @@
     <meta name="description" content="stay hungary, stay foolish">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Centos6.5 Ambari样板机 · warvyvr</title>
+    <title>图中的各种中心度的解释 · warvyvr</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >TechTalk</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Centos6.5 Ambari样板机</a>
+                <a href="#" class="post-name">图中的各种中心度的解释</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Centos6.5 Ambari样板机
+            图中的各种中心度的解释
             <!-- 404 -->
             
         </h1>
@@ -266,20 +266,20 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hadoop">Hadoop</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "graph">graph</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Ambari">Ambari</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "度">度</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">478</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">383</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2017/09/19</span>
+                    <span class="post-intro-time">2020/09/19</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,28 +403,11 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="安装wget和openssh-server"><a href="#安装wget和openssh-server" class="headerlink" title="安装wget和openssh-server"></a>安装wget和openssh-server</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br><span class="line">yum -y install openssh-server</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装阿里云的源"><a href="#安装阿里云的源" class="headerlink" title="安装阿里云的源"></a>安装阿里云的源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.backup</span><br><span class="line">wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-6.repo</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-
-<h2 id="禁用iptables"><a href="#禁用iptables" class="headerlink" title="禁用iptables"></a>禁用iptables</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig iptables off</span><br><span class="line">&#x2F;etc&#x2F;init.d&#x2F;iptables stop</span><br></pre></td></tr></table></figure>
-<h2 id="禁用SELinux"><a href="#禁用SELinux" class="headerlink" title="禁用SELinux"></a>禁用SELinux</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
-<h3 id="永久禁用SELinux"><a href="#永久禁用SELinux" class="headerlink" title="永久禁用SELinux"></a>永久禁用SELinux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;selinux&#x2F;config</span><br><span class="line"># This file controls the state of SELinux on the system.</span><br><span class="line"># SELINUX&#x3D; can take one of these three values:</span><br><span class="line">#       enforcing - SELinux security policy is enforced.</span><br><span class="line">#       permissive - SELinux prints warnings instead of enforcing.</span><br><span class="line">#       disabled - SELinux is fully disabled.</span><br><span class="line">SELINUX&#x3D;disabled </span><br><span class="line"># SELINUXTYPE&#x3D; type of policy in use. Possible values are:</span><br><span class="line">#       targeted - Only targeted network daemons are protected.</span><br><span class="line">#       strict - Full SELinux protection.</span><br><span class="line">SELINUXTYPE&#x3D;targeted</span><br></pre></td></tr></table></figure>
-<h2 id="添加FQDN"><a href="#添加FQDN" class="headerlink" title="添加FQDN"></a>添加FQDN</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hosts</span><br><span class="line">10.211.55.13 Hadoop-1</span><br><span class="line">10.211.55.14 Hadoop-2</span><br></pre></td></tr></table></figure>
-<p>修改<code>/etc/sysconfig/network</code>下将<code>HOSTNAME</code>修改问本机的名称<br>通过<code>hostname</code>命令检查</p>
-<h2 id="配置无密码登陆"><a href="#配置无密码登陆" class="headerlink" title="配置无密码登陆"></a>配置无密码登陆</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-copy-id localhost</span><br><span class="line">ssh-copy-id Hadoop-1</span><br><span class="line">ssh-copy-id Haddop-2</span><br></pre></td></tr></table></figure>
-<h2 id="禁用THP"><a href="#禁用THP" class="headerlink" title="禁用THP"></a>禁用THP</h2><p>检查THP是否开启：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;sys&#x2F;kernel&#x2F;mm&#x2F;transparent_hugepage&#x2F;enabled</span><br><span class="line">cat &#x2F;sys&#x2F;kernel&#x2F;mm&#x2F;transparent_hugepage&#x2F;defrag</span><br></pre></td></tr></table></figure>
-<p>禁用THP：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;never&#39; &gt; &#x2F;sys&#x2F;kernel&#x2F;mm&#x2F;transparent_hugepage&#x2F;enabled</span><br><span class="line">echo &#39;never&#39; &gt; &#x2F;sys&#x2F;kernel&#x2F;mm&#x2F;transparent_hugepage&#x2F;defrag</span><br></pre></td></tr></table></figure>
-<h3 id="永久禁用THP"><a href="#永久禁用THP" class="headerlink" title="永久禁用THP"></a>永久禁用THP</h3><p>编辑改服务：<code>vim /etc/rc.d/rc.local</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if test -f /sys/kernel/mm/transparent_hugepage/enabled; then</span><br><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line">fi</span><br><span class="line">if test -f /sys/kernel/mm/transparent_hugepage/defrag; then</span><br><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p>添加可执行权限:<code>chmod +x /etc/rc.d/rc.local</code></p>
-<h2 id="安装NTP"><a href="#安装NTP" class="headerlink" title="安装NTP"></a>安装NTP</h2><p>执行命令：<code>yum -y install ntp</code><br>配置 <code>vim  /etc/ntp.conf</code><br>使用如下位置来同步时钟</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.cn.pool.ntp.org</span><br><span class="line">2.cn.pool.ntp.org  prefer</span><br><span class="line">ch.pool.ntp.org</span><br></pre></td></tr></table></figure>
-<p>重启服务 <code>service ntpd restart</code><br>查看同步情况<code>ntpd -q</code><br>加入到开机启动 <code>chkconfig ntpd on</code></p>
-<h2 id="在主节点上设置和安装Ambari"><a href="#在主节点上设置和安装Ambari" class="headerlink" title="在主节点上设置和安装Ambari"></a>在主节点上设置和安装Ambari</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;yum.repo.d&#x2F;</span><br><span class="line">wget http:&#x2F;&#x2F;public-repo-1.hortonworks.com&#x2F;ambari&#x2F;centos6&#x2F;2.x&#x2F;updates&#x2F;2.0.1&#x2F;ambari.public-repo-1</span><br><span class="line">yum make clean</span><br><span class="line">yum list | grep ambari</span><br><span class="line">yum install -y ambari-server</span><br><span class="line">ambari-server setup</span><br><span class="line">ambari-server start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="通过web访问ambari的配置界面"><a href="#通过web访问ambari的配置界面" class="headerlink" title="通过web访问ambari的配置界面"></a>通过web访问ambari的配置界面</h2><p><a target="_blank" rel="noopener" href="http://10.211.55.13:8080/">http://10.211.55.13:8080/</a></p>
+        <h1 id="1-说明"><a href="#1-说明" class="headerlink" title="1. 说明"></a>1. 说明</h1><p>在社交网络分析的技术中，图论中的中心度(<code>degree</code>)使用的非常广泛，中心度用于衡量节点与其他节点的关系，并衡量节点在各种情况下的重要程度，本文就汇总了下图论中的各种中心度的说明和用途。</p>
+<h1 id="2-中心性"><a href="#2-中心性" class="headerlink" title="2. 中心性"></a>2. 中心性</h1><h2 id="2-1-度中心性"><a href="#2-1-度中心性" class="headerlink" title="2.1 度中心性"></a>2.1 度中心性</h2><p>度中心性（Degree Centrality）是在网络分析中刻画节点中心性（Centrality）的最直接度量指标。一个节点的节点度越大就意味着这个节点的度中心性越高，该节点在网络中就越重要。</p>
+<h2 id="2-1-接近中心性"><a href="#2-1-接近中心性" class="headerlink" title="2.1 接近中心性"></a>2.1 接近中心性</h2><p>接近中心性(Closeness Centrality)需要考量每个结点到其它结点的最短路的平均长度。也就是说，对于一个结点而言，它距离其它结点越近，那么它的中心度越高。</p>
+<h2 id="2-2-中介中心性"><a href="#2-2-中介中心性" class="headerlink" title="2.2 中介中心性"></a>2.2 中介中心性</h2><p>中介中心度(Betweenness Centrality)描述的是一个结点担任其它两个结点之间最短路的桥梁的次数。一个结点充当“中介”的次数越高，它的中介中心度就越大。如果要考虑标准化的问题，可以用一个结点承担最短路桥梁的次数除以所有的路径数量。</p>
+<h2 id="2-3-特征向量中心性"><a href="#2-3-特征向量中心性" class="headerlink" title="2.3 特征向量中心性"></a>2.3 特征向量中心性</h2><p>特征向量中心性（Eigenvector Centrality）。一个节点的重要性既取决于其邻居节点的数量（即该节点的度），也取决于其邻居节点的重要性。</p>
 
     </article>
     <!-- license  -->
@@ -434,16 +417,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2017/09/19/crun/" title= "MAC下xcrun invalid active developer path, missing xcrun错误">
-                    <div class="nextTitle">MAC下xcrun invalid active developer path, missing xcrun错误</div>
+                <a href= "/2021/02/21/math-test/" title= "如何在Hexo中添加数学公式">
+                    <div class="nextTitle">如何在Hexo中添加数学公式</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2017/09/03/hdfs/" title= "Hadoop的HDFS">
-                    <div class="prevTitle">Hadoop的HDFS</div>
+                <a href= "/2020/02/10/microk8s-dashboard/" title= "microk8s Dashboard遇坑记">
+                    <div class="prevTitle">microk8s Dashboard遇坑记</div>
                 </a>
             
         </li>
@@ -551,7 +534,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85wget%E5%92%8Copenssh-server"><span class="toc-number">1.</span> <span class="toc-text">安装wget和openssh-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84%E6%BA%90"><span class="toc-number">2.</span> <span class="toc-text">安装阿里云的源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E7%94%A8iptables"><span class="toc-number">3.</span> <span class="toc-text">禁用iptables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E7%94%A8SELinux"><span class="toc-number">4.</span> <span class="toc-text">禁用SELinux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B8%E4%B9%85%E7%A6%81%E7%94%A8SELinux"><span class="toc-number">4.1.</span> <span class="toc-text">永久禁用SELinux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0FQDN"><span class="toc-number">5.</span> <span class="toc-text">添加FQDN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86"><span class="toc-number">6.</span> <span class="toc-text">配置无密码登陆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E7%94%A8THP"><span class="toc-number">7.</span> <span class="toc-text">禁用THP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B8%E4%B9%85%E7%A6%81%E7%94%A8THP"><span class="toc-number">7.1.</span> <span class="toc-text">永久禁用THP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85NTP"><span class="toc-number">8.</span> <span class="toc-text">安装NTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%B8%BB%E8%8A%82%E7%82%B9%E4%B8%8A%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%AE%89%E8%A3%85Ambari"><span class="toc-number">9.</span> <span class="toc-text">在主节点上设置和安装Ambari</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87web%E8%AE%BF%E9%97%AEambari%E7%9A%84%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A2"><span class="toc-number">10.</span> <span class="toc-text">通过web访问ambari的配置界面</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">1. 说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%B8%AD%E5%BF%83%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">2. 中心性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%BA%A6%E4%B8%AD%E5%BF%83%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 度中心性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%8E%A5%E8%BF%91%E4%B8%AD%E5%BF%83%E6%80%A7"><span class="toc-number">2.2.</span> <span class="toc-text">2.1 接近中心性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%B8%AD%E4%BB%8B%E4%B8%AD%E5%BF%83%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">2.2 中介中心性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E4%B8%AD%E5%BF%83%E6%80%A7"><span class="toc-number">2.4.</span> <span class="toc-text">2.3 特征向量中心性</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

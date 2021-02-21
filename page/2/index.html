@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-CN">
     <!-- title -->
 
 
@@ -210,7 +210,7 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
-    <a class="home-link" href=/>James的空间</a>
+    <a class="home-link" href=/>TechTalk</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -236,7 +236,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            James的空间
+            TechTalk
             <!-- 文章页  -->
             
         </h1>
@@ -359,6 +359,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2017/09/19/crun/" >
+            
+                <span>MAC下xcrun invalid active developer path, missing xcrun错误</span>
+        </a>
+        <div class="abstract-content">
+            在MAC下，今天要git clone一个github库下来遇到这样的一个问题:
+1234james@Desktop%git clon https:&#x2F;&#x2F;github.com&#x2F;zgj0315&#x2F;springbootWebService.gitxcrun: error: invalid active developer path (&#x2F;Library&#x2F;Developer&#x2F;CommandLineTools), missing xcrun at: &#x2F;Library&#x2F;Developer&#x2F;CommandLi...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mac">mac</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "xcrun">xcrun</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "xcode">xcode</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2017/09/19/Hadoop-template-md/" >
             
                 <span>Centos6.5 Ambari样板机</span>
@@ -471,7 +505,7 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     <div class="profile-name">warvyvr</div>
     
     <div class="profile-signature">
-        stay hungry,stay foolish
+        仙山以逝，月落苍茫
     </div>
     
     
@@ -482,7 +516,7 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
         
             
-                <a href="http://warvyvr.github.io" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="http://www.github.com/warvyvr" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
@@ -544,7 +578,7 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
         
             
-                <a href="http://warvyvr.github.io" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="http://www.github.com/warvyvr" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
@@ -753,9 +787,22 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 13
+        Total : 14
         </div>
         <!-- search  -->
         
@@ -771,7 +818,7 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2021/02/21/2020-graph-degree/" >图中的各种中心度的解释</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2021/02/21/math-test/" >如何在Hexo中添加数学公式</a>
         </li>
     
     
@@ -782,6 +829,11 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/2020/09/19/graph-degree/" >图中的各种中心度的解释</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -982,7 +1034,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+</body>
 </html>
 
 
