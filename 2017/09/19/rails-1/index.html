@@ -447,6 +447,23 @@ height:50vh;
 <!-- City版安装代码已完成 -->
     
     
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id: "rails记录", // 可选。默认为 location.href
+        owner: 'warvyvr',
+        repo: 'gitment-comments',
+        oauth: {
+            client_id: '08454384d02e9ce006d8',
+            client_secret: '343c4a75e810da5b863095a660a7897c16dbeede',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
     <!-- partial('_partial/comment/changyan') -->
     <!--PC版-->
 
