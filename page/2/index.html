@@ -198,7 +198,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
     
         <body class="home-body">
@@ -359,6 +359,283 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/10/microk8s-dashboard/" >
+            
+                <span>microk8s Dashboard遇坑记</span>
+        </a>
+        <div class="abstract-content">
+            前言在mac上通过multipass安装好Ubuntu后，开始microk8s之旅。按照microk8s的教程，可以先启动dashboard玩玩，索性就按照官方的教程走了。本文记录的是在安装 dashboard过程中遇到的一些坑。
+服务无法启动按照官方给的教程，开启dashboard，以为这样就可以了。
+1ubuntu@microk8s-vm2:~$ microk8s.enable dashboard
+然后查看仪表盘的pod。
+1234567ubuntu@microk8s-vm2:~$ microk8s.kubectl get pods --all-namespaces NAMESPAC...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "microk8s">microk8s</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/02/26/python-datetime/" >
+            
+                <span>python Datetime与时间戳转换</span>
+        </a>
+        <div class="abstract-content">
+            时间到timestamp转换123from datetime import datetimed = datetime(2019,02,25)timestamp = datetime.timestamp(d)
+
+timestamp到时间格式的转换1234from datetime import datetimetimestamp = 1545730073dt_object = datetime.fromtimestamp(timestamp)
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/02/21/recall/" >
+            
+                <span>召回率以及准确率概念</span>
+        </a>
+        <div class="abstract-content">
+            基本定义在机器学习领域或者统计领域，用于衡量模型优劣的一种方法。首先要熟悉如下几个概念：
+
+TP:真阳性，数据本身是阳性的，模型对该样本的评价也是阳性的，这是我们期待的。
+TN:真阴性，数据本身是阴性的，模型对该样本的评价也是阴性的，这也是我们期待的。
+FP:假阳性，数据本身是阴性的，模型对该样本的评价是阳性的，也不是我们期待的。
+FN:假阴性，数据本身是阳性的，模型对该样本的评价是阴性的，这不是我们期待的。
+
+狼来了(精简版)上面的这几个概念看起来比较绕，用一个实际的例子可以这么表达，假如有一个“狼来了”的模型，可以识别狼是否来了。那么套用上面的几个概念可以表达为我们做出以下定义：
+
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "机器学习">机器学习</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/01/19/mac-java-change/" >
+            
+                <span>MAC下切换java版本的方法</span>
+        </a>
+        <div class="abstract-content">
+            mac下默认的JDK1.8通过如下方法获得
+123456#/usr/libexec/java_home -VMatching Java Virtual Machines (1):1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home
+
+当你将Oracle JDK11(例如jdk-11.0.5）或其他其他JDK...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mac">mac</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "java">java</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "jenv">jenv</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/01/16/mysql-export/" >
+            
+                <span>docker环境下的mysql输出导出</span>
+        </a>
+        <div class="abstract-content">
+            最近使用docker有点多，在本地mac环境下已经习惯使用docker来启动软件组件。而docker化后的mysql在导入数据方面需要执行如下的方式进行数据导出例如docker-compose.yml配置如下：
+12345678910version: &#39;2&#39;  2 services:  3   mysql:  4     image: mysql:5  5     ports:  6       - &quot;127.0.0.1:33061:3306&quot;  7     volumes:  8       - ~&#x2F;lab&#x2F;mysql-data:...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "docker">docker</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mysql">mysql</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2017/09/27/git-on-sysnology/" >
+            
+                <span>在群晖216上搭建git服务器步骤</span>
+        </a>
+        <div class="abstract-content">
+            最近由于有些代码需要保存在自己的家里的电脑上，而不能放在github上。所以打算在家里的群晖上安装gitlab，在gitlab官网发现gitlab只能安装在64位的环境下，顿时心里凉了半截。没办法，只能在216上手工开启git的方式。
+在web上安装git server首先，在群晖的管理界面上的安装git server，然后选择需要开启git server的用户，假如需要使用git的用户叫做james。然后再开启该服务之前需要开启ssh服务。
+配置git数据仓库的路径在使用ssh登陆到群晖NAS后，在volume1下创建git仓库文件夹
+1mkdir git_repos
+然后在该路径下创...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "git">git</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "群晖">群晖</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2017/09/21/hive-client/" >
+            
+                <span>Hive客户端</span>
+        </a>
+        <div class="abstract-content">
+            需要安装DB Visualizer软件，并添加Hive JDBC连接，
+
+软件下载地址: https://www.dbvis.com/download/
+下载hive jdbc standalone jar
+在DBV软件的安装路径下的jdbc下创建hive文件夹，然后将上步中的jar包放进去。
+打开软件在Tools-&gt;Driver Manager中扫描并添加hive jdbc驱动
+创建一个连接，选择Hive JDBC
+Hive JDBC 地址: jdbc:hive2://1.1.1.9:1000
+该软件只能查看hive中的数据，不能够更改数据和表结构。
+
+另外需要在Hive的hiv...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hive">Hive</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2017/09/19/rails-1/" >
+            
+                <span>rails记录</span>
+        </a>
+        <div class="abstract-content">
+            URL路由当添加一条新的路由资源到routes.rb中：
+12resources testappresource testapp2
+那么rails会生成如下7中url
+123456789101112131415161718[root@hadoop0 config]# rake routes...            testapp_index GET    &#x2F;testapp(.:format)                        testapp#index                          POST   &#x2F;testapp(.:format)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "rails">rails</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2017/09/19/crun/" >
             
                 <span>MAC下xcrun invalid active developer path, missing xcrun错误</span>
@@ -420,81 +697,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2017/09/03/hdfs/" >
-            
-                <span>Hadoop的HDFS</span>
-        </a>
-        <div class="abstract-content">
-            Hadoop的NameNode通过FsImage以及EditLog来维护：
-
-FsImage是保存了文件系统的树形结构以及原信息等数据。
-EditLog用于记录对文件的修改记录，类似于可以执行的日志记录一样。
-
-当大量数据频繁操作后，EditLog会变的很大，那么在Hadoop启动阶段将进入到“安全模式”，在该模式下，Hadoop只能进行读取操作，而不能进行写入操作，当EditLog更新完FsImage后，Hadoop将退出安全模式。为了缩短Hadoop在安全模式下的时间，SNN(Secondary NameNode)被设计出来。SNN将读取FsImage以及EditLog信息，将两者合...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hadoop">Hadoop</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HDFS">HDFS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2017/09/01/hdfs-rack-awareness/" >
-            
-                <span>Hadoop机架感知功能</span>
-        </a>
-        <div class="abstract-content">
-            机架感知功能属于Hadoop的数据存储策略功能。由于在默认情况下Hadoop认为所有的datanode处于同一机架/default-rack中。如果Hadoop集群是跨多个机架或者多个IDC机房，那么数据访问的成本会由于过多的网络传输会增加。当Hadoop启动机架感知功能后，Hadoop的副本会按照如下策略存放（以3副本为例）：
-
-第一个副本存储在client相同的datanode上。（如果数据请求来至于集群外部，那么存储在一个低负载的一个datanode上）。
-第二个副本存储在与第一个副本不同的rack的datanode上。
-第三个副本存储在另外一个副本相同的rack的datanode...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hadoop">Hadoop</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HDFS">HDFS</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+        <a class="extend prev" rel="prev" href="/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">NEXT &amp;#62;</a>
     </nav>
     
 </main>
@@ -800,9 +1006,119 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -813,8 +1129,57 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
     
+    <div class="archive-year"> 2022 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2022/05/10/mac-wine/" >Wine on MAC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2022/05/09/04-pyscripts/" >WebAssembly是什么</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2021/07/15/5820-quadro-4000/" >5820服务器安装cuda</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2021/07/01/ca/" >CA的证书分发的过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2021/07/01/https/" >https安全通道建立过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2021/03/23/linux-spacesec/" >几种可执行文件安全缓解措施</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href= "/2021/03/18/alios-haas1000-firmware/" >Alios Things编译构建过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href= "/2021/03/17/identify-elf/" >如何识别elf可执行文件是golang或者rust语言编译</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -956,6 +1321,30 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
         <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
     
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1034,24 +1423,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
-</body>
+    </body>
 </html>
 
 

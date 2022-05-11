@@ -200,7 +200,7 @@
     
     <!-- 谷歌统计  -->
     
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
     
     
@@ -339,6 +339,271 @@
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
             <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2022/05/10/mac-wine/" >
+            
+                <span>Wine on MAC</span>
+        </a>
+        <div class="abstract-content">
+            今天在做一个分析工作的时候，最终发现windows上的一个程序更加的高效，自然而然就想到了使用wine。wine (Wine is Not Emulator)是一个跨平台解释执行Windows程序的程序。通过wine已经在2018年后不怎么维护了，最终在reddit的一个帖子中找到了一个叫做wineskin的软件，通过brew安装后，发现该软件与我的mac big sur不兼容，程序无响应，无奈将其卸载掉了。接下来发现wine有一个兼容big sur和catalina的版本wine crossover版本，该软件的github地址如下：链接，通过brew安装该软件:1brew insta...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mac">mac</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wine">wine</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "字体">字体</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "winetricks">winetricks</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "mfc42">mfc42</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2022/05/09/04-pyscripts/" >
+            
+                <span>WebAssembly是什么</span>
+        </a>
+        <div class="abstract-content">
+            前言近期趁着5.1期间，学习了一些新的内容，陆续的做一些总结和输出，浏览器中的Python算是这几天学习的一个小节点吧。这里先总结下WebAssembly。由于主流的浏览器（Chrome、Safari、Firefox， 微软Edge）开始支持WebAssembly，使得其他语言(C,C++,Python,…)运行在浏览器中称为一种可能。2017年11月，以上四个浏览器都开始实验性的支持WebAssembly[5][6]。WebAssembly 于 2019 年 12 月 5 日成为万维网联盟（W3C）的推荐，与 HTML，CSS 和 JavaScript 一起，成为 Web 的第四种语言...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/05/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wasm">wasm</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "WebAssembly">WebAssembly</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "wast">wast</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/07/15/5820-quadro-4000/" >
+            
+                <span>5820服务器安装cuda</span>
+        </a>
+        <div class="abstract-content">
+            1. 背景最近接收了一台戴尔5820服务器，这个服务器之前用于机器学习的开发，配置一般，16C/128G/1.5T/Quadro 4000的配置。要命的是这个服务器安装的是Windows 10系统，而不是Ubuntu或者CentOS等Linux环境。本文主要记录下服务器重新安装了Ubuntu20.04 LTS后如何安装CUDA的过程。
+
+选择安装Ubuntu 20这个版本是因为Ubuntu18版本安装失败。原因是安装过程中存在擦除磁盘擦不掉，重试多次后安装失败。
+
+2. 设置驱动首先需要设置使用Quadro显卡的驱动作为输出，而不是内置的nouveau。如下图，图片来自网上（侵删）。重启...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/15</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/07/01/ca/" >
+            
+                <span>CA的证书分发的过程</span>
+        </a>
+        <div class="abstract-content">
+            简介浏览器访问HTTPS网站通过CA的证书来验真网站是否是可信网站，其中除了证书外，CA机构扮演了重要的角色，CA分发证书给申请方，申请方将证书文件嵌入到HTTPS服务中来证明自身。其证书的申请过程大致流程如下：其中CA机构处理的是CSR(Certification Signed Request)文件，该来自于应用方(Applicant)公钥绑定签发的文件。CA机构通过自身的私钥来签发CSR请求为证书文件，供申请方使用。不同的步骤下的命令行处理如下:
+Applicant生成私钥(使用des3加密私钥内容)
+1openssl genrsa -des3 -out server.key 409...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "安全">安全</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/07/01/https/" >
+            
+                <span>https安全通道建立过程</span>
+        </a>
+        <div class="abstract-content">
+            简介HTTPS是HTTP over SSL的缩写，SSL是Secure Socket Layer的缩写。SSL位于TCP层之上，并在HTTP层之下。SSL被IETF标准化为TLS (Transport Layer Security)。而实际上TLS就是SSL，后续的发展仍然是以TLS为主。
+基于RSA的HTTPS握手方式由于非对称加解密的速度非常慢，所以TLS的数据传输过程仍然采用对称加密的方式。因此如何保证对称密钥的生成和安全的传递尤其重要。TLS在数据传输的使用的对称密钥的在TLS HandShake阶段完成交互。对称密钥由三部分构成，Random_C, Random_S, Pre-...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/07/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "安全, https">安全, https</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/03/23/linux-spacesec/" >
+            
+                <span>几种可执行文件安全缓解措施</span>
+        </a>
+        <div class="abstract-content">
+            介绍最近有机会接触了可执行文件（例如elf，pe文件）的安全缓解措施的检测方法，这里做一些记录。
+NX标志位
+栈上的数据没有执行权限防止攻击手段：栈溢出 + 跳到栈上执行shellcode
+
+NX位是某些CPU（包括x86）的内存管理单元（MMU）的一个特性。它允许将每个内存页标记为代码执行的“允许”或“不允许”。MMU受内核控制；内核代码决定哪些页获得执行权限，哪些页没有。因此，堆栈空间是否受到执行保护取决于操作系统。这还取决于许多其他因素：
+
+尽管内核可以为页面属性应用默认值，但应用程序可以请求更改。例如，在Linux系统上，mprotect()系统调用可用于启用或禁用在调用进程控制...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "安全">安全</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/03/18/alios-haas1000-firmware/" >
+            
+                <span>Alios Things编译构建过程</span>
+        </a>
+        <div class="abstract-content">
+            说明最近有机会接触到了阿里物联网固件的分析工作，借此机会分析了haas1000开发版的固件的文件的构建过程。该过程的大致构建过程如下，其中不同的阶段用不同的颜色做了标记，后续会有说明。
+
+注：Alios Things的固件构建需要aos-cube来构建，aos-cube通过pip install可以安装。
+
+下图中不同的颜色表示如下：
+
+蓝色：固件中客户自己的代码的构建过程
+紫色：最终bin文件制造前准备工作
+黄色：littlefs打包打包过程
+绿色：最终的固件文件封装过程
+
+
+阿里把构建的整个过程暴露给用户非常简单的操作方式，通过aos make进行编译和构建，详细过程参见haas10...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "firmware">firmware</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "alios">alios</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/03/17/identify-elf/" >
+            
+                <span>如何识别elf可执行文件是golang或者rust语言编译</span>
+        </a>
+        <div class="abstract-content">
+            如果elf是golang语言编写后编译生成，那么elf存在如下的段信息：1234567#readelf --sections xxx  [ 6] .gosymtab         PROGBITS         00000000029523d0  025523d0       0000000000000000  0000000000000000   A       0     0     1  [ 7] .gopclntab        PROGBITS         00000000029523e0  025523e0       0000000000faeca1  00000...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "elf分析">elf分析</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     
     
@@ -1055,9 +1320,119 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 14
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -1068,8 +1443,57 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
     
     
+    <div class="archive-year"> 2022 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2022/05/10/mac-wine/" >Wine on MAC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2022/05/09/04-pyscripts/" >WebAssembly是什么</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2021/07/15/5820-quadro-4000/" >5820服务器安装cuda</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2021/07/01/ca/" >CA的证书分发的过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2021/07/01/https/" >https安全通道建立过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2021/03/23/linux-spacesec/" >几种可执行文件安全缓解措施</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href= "/2021/03/18/alios-haas1000-firmware/" >Alios Things编译构建过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href= "/2021/03/17/identify-elf/" >如何识别elf可执行文件是golang或者rust语言编译</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1211,6 +1635,30 @@ EditLog用于记录对文件的修改记录，类似于可以执行的日志记�
     
         <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
     
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1289,24 +1737,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
-</body>
+    </body>
 </html>
 
 
