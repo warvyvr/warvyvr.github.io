@@ -429,6 +429,37 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2022/04/15/es-jvm/" >
+            
+                <span>ElasticSearch中JVM使用问题</span>
+        </a>
+        <div class="abstract-content">
+            最近在看一个Kibana查询ES超时的问题，在gc.log中有一定比例的内存分配失败的情况。默认情况下JVM按照1:2的比例将xmx设定的内容进行分配，例如1-XX:Xmx=16g该例子中将JVM的堆内容设置为16G，那么新生代为16✖️1➗3 = 5G内存，老生代16✖️2➗3=11G内存，其中新生代的4 of 5的部分也就是5✖️4➗5=4G分给伊甸园区，S区剩余的新生代内存为1G。但是，由于ES在默认指定的老年代（CMS）+ 新生代（ParNew）收集器。如果没有显示设置新生代大小，JVM 在使用 CMS 收集器时会自动调参，新生代的大小在没有设置的情况下是通过计算得出的。从gc....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2022/04/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JVM">JVM</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ElasticSearch">ElasticSearch</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2021/07/15/5820-quadro-4000/" >
             
                 <span>5820服务器安装cuda</span>
@@ -643,39 +674,6 @@ PS: 和我用的一样的主题。
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/02/21</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/09/19/graph-degree/" >
-            
-                <span>图中的各种中心度的解释</span>
-        </a>
-        <div class="abstract-content">
-            1. 说明在社交网络分析的技术中，图论中的中心度(degree)使用的非常广泛，中心度用于衡量节点与其他节点的关系，并衡量节点在各种情况下的重要程度，本文就汇总了下图论中的各种中心度的说明和用途。
-2. 中心性2.1 度中心性度中心性（Degree Centrality）是在网络分析中刻画节点中心性（Centrality）的最直接度量指标。一个节点的节点度越大就意味着这个节点的度中心性越高，该节点在网络中就越重要。
-2.1 接近中心性接近中心性(Closeness Centrality)需要考量每个结点到其它结点的最短路的平均长度。也就是说，对于一个结点而言，它距离其它结点越近，那么它的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "graph">graph</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "度">度</a>
-    
-</div>
             
         </div>
     </article>
@@ -1099,9 +1097,22 @@ PS: 和我用的一样的主题。
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -1123,6 +1134,11 @@ PS: 和我用的一样的主题。
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2022/05/09/04-pyscripts/" >WebAssembly是什么</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2022/04/15/es-jvm/" >ElasticSearch中JVM使用问题</a>
         </li>
     
     
@@ -1328,6 +1344,10 @@ PS: 和我用的一样的主题。
     
         <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
     
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
+    
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1406,7 +1426,22 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
 
 

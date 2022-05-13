@@ -22,7 +22,7 @@
     <meta name="description" content="stay hungary, stay foolish">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>warvyvr</title>
+    <title>ElasticSearch中JVM使用问题 · warvyvr</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 <meta name="generator" content="Hexo 5.4.2"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >TechTalk</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">ElasticSearch中JVM使用问题</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>TechTalk</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            ElasticSearch中JVM使用问题
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JVM">JVM</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ElasticSearch">ElasticSearch</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">311</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2022/04/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,53 +401,48 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/03/18/alios-haas1000-firmware/" >
-            
-                <span>Alios Things编译构建过程</span>
-        </a>
-        <div class="abstract-content">
-            说明最近有机会接触到了阿里物联网固件的分析工作，借此机会分析了haas1000开发版的固件的文件的构建过程。该过程的大致构建过程如下，其中不同的阶段用不同的颜色做了标记，后续会有说明。
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>最近在看一个Kibana查询ES超时的问题，在gc.log中有一定比例的内存分配失败的情况。<br><img src="/img/gc_allocation_failure.jpg" alt="分配失败"><br>默认情况下JVM按照1:2的比例将<code>xmx</code>设定的内容进行分配，例如<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:Xmx=16g</span><br></pre></td></tr></table></figure><br>该例子中将JVM的堆内容设置为16G，那么新生代为16✖️1➗3 = 5G内存，老生代16✖️2➗3=11G内存，其中新生代的4 of 5的部分也就是5✖️4➗5=4G分给伊甸园区，S区剩余的新生代内存为1G。<br>但是，由于ES在默认指定的老年代（CMS）+ 新生代（ParNew）收集器。<br>如果没有显示设置新生代大小，JVM 在使用 CMS 收集器时会自动调参，新生代的大小在没有设置的情况下是通过计算得出的。<br>从gc.log中可以得出:<br><img src="/img/es-jvm.png" alt="gc.log"><br>图中EDEN为笔误，应为新生代。<br>10833056/613440 ～= 21 也就是说老年代比上新生代不是默认的2:1，而是21:1，老年代是10G，而新生代是0.5G。<br>因此需要重新配置下ES的JVM参数:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:NewRatio=2 -XX:SurvivorRatio=8</span><br></pre></td></tr></table></figure>
+<p>将老生代与新生代的比例严格限定为2:1，伊甸园区的比例为严格的8/10部分。</p>
 
-注：Alios Things的固件构建需要aos-cube来构建，aos-cube通过pip install可以安装。
-
-下图中不同的颜色表示如下：
-
-蓝色：固件中客户自己的代码的构建过程
-紫色：最终bin文件制造前准备工作
-黄色：littlefs打包打包过程
-绿色：最终的固件文件封装过程
-
-
-阿里把构建的整个过程暴露给用户非常简单的操作方式，通过aos make进行编译和构建，详细过程参见haas10...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/03/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "firmware">firmware</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "alios">alios</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2022/05/09/04-pyscripts/" title= "WebAssembly是什么">
+                    <div class="nextTitle">WebAssembly是什么</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/07/15/5820-quadro-4000/" title= "5820服务器安装cuda">
+                    <div class="prevTitle">5820服务器安装cuda</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -458,6 +516,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1059,6 +1135,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

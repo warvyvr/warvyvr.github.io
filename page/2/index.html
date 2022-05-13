@@ -359,6 +359,39 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/09/19/graph-degree/" >
+            
+                <span>图中的各种中心度的解释</span>
+        </a>
+        <div class="abstract-content">
+            1. 说明在社交网络分析的技术中，图论中的中心度(degree)使用的非常广泛，中心度用于衡量节点与其他节点的关系，并衡量节点在各种情况下的重要程度，本文就汇总了下图论中的各种中心度的说明和用途。
+2. 中心性2.1 度中心性度中心性（Degree Centrality）是在网络分析中刻画节点中心性（Centrality）的最直接度量指标。一个节点的节点度越大就意味着这个节点的度中心性越高，该节点在网络中就越重要。
+2.1 接近中心性接近中心性(Closeness Centrality)需要考量每个结点到其它结点的最短路的平均长度。也就是说，对于一个结点而言，它距离其它结点越近，那么它的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "graph">graph</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "度">度</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/10/microk8s-dashboard/" >
             
                 <span>microk8s Dashboard遇坑记</span>
@@ -658,39 +691,6 @@ Hive JDBC 地址: jdbc:hive2://1.1.1.9:1000
         <a class="post-tag" href="javascript:void(0);" data-tags = "xcrun">xcrun</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "xcode">xcode</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2017/09/19/Hadoop-template-md/" >
-            
-                <span>Centos6.5 Ambari样板机</span>
-        </a>
-        <div class="abstract-content">
-            安装wget和openssh-server12yum -y install wgetyum -y install openssh-server
-
-安装阿里云的源123mv &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo.backupwget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hadoop">Hadoop</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Ambari">Ambari</a>
     
 </div>
             
@@ -1116,9 +1116,22 @@ Hive JDBC 地址: jdbc:hive2://1.1.1.9:1000
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -1140,6 +1153,11 @@ Hive JDBC 地址: jdbc:hive2://1.1.1.9:1000
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2022/05/09/04-pyscripts/" >WebAssembly是什么</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2022/04/15/es-jvm/" >ElasticSearch中JVM使用问题</a>
         </li>
     
     
@@ -1345,6 +1363,10 @@ Hive JDBC 地址: jdbc:hive2://1.1.1.9:1000
     
         <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
     
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
+    
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1423,7 +1445,22 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>
 
 
