@@ -540,24 +540,28 @@
             
 
             
-    <div id="gitment-container"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    <script>
-        var gitment = new Gitment({
-            id: '1626328678000', // 可选。默认为 location.href
-            owner: 'warvyvr',
-            repo: 'blog-comment',
-            oauth: {
-                client_id: '75aa52ba876e56d2ddd0',
-                client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
-            },
-        })
-        gitment.render('gitment-container')
-    </script>
-
 
             
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+    <script>
+        let idOption = '1626328678000'
+        
+        const gitalk = new Gitalk({
+            clientID: '75aa52ba876e56d2ddd0',
+            clientSecret: '320f00bf415383b17f45ca20ce1c0b9230151728',
+            repo: 'http://www.github.com/warvyvr/blog-comment',
+            owner: 'warvyvr',
+            admin: "warvyvr",
+            id: idOption,
+            distractionFreeMode: false,
+            createIssueManually: true,
+        })
+        gitalk.render('gitalk-container')
+    </script>
+    <noscript>为正常使用 Gitalk 评论功能，您需要激活 JavaScript</noscript>
+
 
             <!-- utteranc评论 -->
 
