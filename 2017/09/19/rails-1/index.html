@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">585</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">556</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,23 +401,10 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="URL路由"><a href="#URL路由" class="headerlink" title="URL路由"></a>URL路由</h2><p>当添加一条新的路由资源到<code>routes.rb</code>中：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resources testapp</span><br><span class="line">resource testapp2</span><br></pre></td></tr></table></figure>
-<p>那么rails会生成如下7中url</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop0 config]# rake routes</span><br><span class="line">...</span><br><span class="line">            testapp_index GET    &#x2F;testapp(.:format)                        testapp#index</span><br><span class="line">                          POST   &#x2F;testapp(.:format)                        testapp#create</span><br><span class="line">              new_testapp GET    &#x2F;testapp&#x2F;new(.:format)                    testapp#new</span><br><span class="line">             edit_testapp GET    &#x2F;testapp&#x2F;:id&#x2F;edit(.:format)               testapp#edit</span><br><span class="line">                  testapp GET    &#x2F;testapp&#x2F;:id(.:format)                    testapp#show</span><br><span class="line">                          PATCH  &#x2F;testapp&#x2F;:id(.:format)                    testapp#update</span><br><span class="line">                          PUT    &#x2F;testapp&#x2F;:id(.:format)                    testapp#update</span><br><span class="line">                          DELETE &#x2F;testapp&#x2F;:id(.:format)                    testapp#destroy</span><br><span class="line"></span><br><span class="line">                 testapp2 POST   &#x2F;testapp2(.:format)                       testapp2s#create</span><br><span class="line">             new_testapp2 GET    &#x2F;testapp2&#x2F;new(.:format)                   testapp2s#new</span><br><span class="line">            edit_testapp2 GET    &#x2F;testapp2&#x2F;edit(.:format)                  testapp2s#edit</span><br><span class="line">                          GET    &#x2F;testapp2(.:format)                       testapp2s#show</span><br><span class="line">                          PATCH  &#x2F;testapp2(.:format)                       testapp2s#update</span><br><span class="line">                          PUT    &#x2F;testapp2(.:format)                       testapp2s#update</span><br><span class="line">                          DELETE &#x2F;testapp2(.:format)                       testapp2s#destroy</span><br></pre></td></tr></table></figure>
-<p>上述表格中的左侧一列是可以在<code>views</code>中或者<code>controller</code>中使用引用url的助记符，例如可以使用<code>redirect testapp2_path</code>代表重定向到<code>/testapp2</code>这个url上。 后面的<code>testapp2s#create</code>代表的是哪个控制器的那个函数被调到处理该时间，在这个例子上就是<code>testapp2s</code>的<code>create</code>方法来处理<code>GET</code>请求。</p>
-<p>可以使用<code>except</code>和<code>only</code>来排除哪些action和保留哪些action，例如：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resources <span class="symbol">:testapp</span>, <span class="symbol">:only</span> =&gt; [<span class="symbol">:index</span>, <span class="symbol">:show</span>]</span><br><span class="line">resource <span class="symbol">:testapp2</span>, <span class="symbol">:except</span> =&gt; <span class="symbol">:destroy</span></span><br></pre></td></tr></table></figure>
-
-<p>如果在构建的url中存在多个id的情况，可以使用param来制定id的名称，例如</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resources <span class="symbol">:task</span> <span class="keyword">do</span></span><br><span class="line">  member <span class="keyword">do</span></span><br><span class="line">    resources <span class="symbol">:detail</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>会生成 <code>/task/:id/detail/:id</code>的URL但是在controller进行url渲染的时候，不能生成正确的url信息，所以这个路由信息需要如下改动</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resources <span class="symbol">:task</span> ,<span class="symbol">param:</span> <span class="symbol">:task_id</span> <span class="keyword">do</span></span><br><span class="line">  member <span class="keyword">do</span></span><br><span class="line">    resources <span class="symbol">:detail</span>, <span class="symbol">param:</span> <span class="symbol">:detail_id</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>这次，将会生成<code>/task/:task_id/detail/:detail_id</code>这样的url，这样在controller进行渲染的时候可以渲染出正确url</p>
-<h3 id="PUT-vs-POST"><a href="#PUT-vs-POST" class="headerlink" title="PUT vs POST"></a>PUT vs POST</h3><p>在HTTP中<code>POST</code>意味着创建一个新的对象，而<code>PUT</code>意味着是更新该对象操作。<br>由于web的form中的submit按钮会自动使用<code>POST</code>方法来推送消息，但是在实际场景中，form的数据可能是更新的情况，不应该使用<code>POST</code>消息，而是使用<code>PUT</code>消息，但是在form中的method即使修改为<code>PUT</code>后，浏览器自动忽略该行为，并自动修改为<code>GET</code>请求。<br>浏览器已经考虑了上述情况，做了工程实践上的妥协，添加如下标签后，该form的推送方法将使用<code>PUT</code>方式:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;hidden&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;_method&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;PUT&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>或者是slim的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;f.text_field :name, type: &#39;hidden&#39;, name: &#39;_method&#39;, value:&#39;PUT&#39;</span><br></pre></td></tr></table></figure>
+        <h2 id="URL路由"><a href="#URL路由" class="headerlink" title="URL路由"></a>URL路由</h2><p>当添加一条新的路由资源到<code>routes.rb</code>中：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resources testapp</span><br><span class="line">resource testapp2</span><br></pre></td></tr></table></figure><br>那么rails会生成如下7中url<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@hadoop0 config]# rake routes</span><br><span class="line">...</span><br><span class="line">            testapp_index GET    /testapp(.:format)                        testapp#index</span><br><span class="line">                          POST   /testapp(.:format)                        testapp#create</span><br><span class="line">              new_testapp GET    /testapp/new(.:format)                    testapp#new</span><br><span class="line">             edit_testapp GET    /testapp/:id/edit(.:format)               testapp#edit</span><br><span class="line">                  testapp GET    /testapp/:id(.:format)                    testapp#show</span><br><span class="line">                          PATCH  /testapp/:id(.:format)                    testapp#update</span><br><span class="line">                          PUT    /testapp/:id(.:format)                    testapp#update</span><br><span class="line">                          DELETE /testapp/:id(.:format)                    testapp#destroy</span><br><span class="line"></span><br><span class="line">                 testapp2 POST   /testapp2(.:format)                       testapp2s#create</span><br><span class="line">             new_testapp2 GET    /testapp2/new(.:format)                   testapp2s#new</span><br><span class="line">            edit_testapp2 GET    /testapp2/edit(.:format)                  testapp2s#edit</span><br><span class="line">                          GET    /testapp2(.:format)                       testapp2s#show</span><br><span class="line">                          PATCH  /testapp2(.:format)                       testapp2s#update</span><br><span class="line">                          PUT    /testapp2(.:format)                       testapp2s#update</span><br><span class="line">                          DELETE /testapp2(.:format)                       testapp2s#destroy</span><br></pre></td></tr></table></figure><br>上述表格中的左侧一列是可以在<code>views</code>中或者<code>controller</code>中使用引用url的助记符，例如可以使用<code>redirect testapp2_path</code>代表重定向到<code>/testapp2</code>这个url上。 后面的<code>testapp2s#create</code>代表的是哪个控制器的那个函数被调到处理该时间，在这个例子上就是<code>testapp2s</code>的<code>create</code>方法来处理<code>GET</code>请求。</p>
+<p>可以使用<code>except</code>和<code>only</code>来排除哪些action和保留哪些action，例如：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resources <span class="symbol">:testapp</span>, <span class="symbol">:only</span> =&gt; [<span class="symbol">:index</span>, <span class="symbol">:show</span>]</span><br><span class="line">resource <span class="symbol">:testapp2</span>, <span class="symbol">:except</span> =&gt; <span class="symbol">:destroy</span></span><br></pre></td></tr></table></figure></p>
+<p>如果在构建的url中存在多个id的情况，可以使用param来制定id的名称，例如<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resources <span class="symbol">:task</span> <span class="keyword">do</span></span><br><span class="line">  member <span class="keyword">do</span></span><br><span class="line">    resources <span class="symbol">:detail</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><br>会生成 <code>/task/:id/detail/:id</code>的URL但是在controller进行url渲染的时候，不能生成正确的url信息，所以这个路由信息需要如下改动<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resources <span class="symbol">:task</span> ,<span class="symbol">param:</span> <span class="symbol">:task_id</span> <span class="keyword">do</span></span><br><span class="line">  member <span class="keyword">do</span></span><br><span class="line">    resources <span class="symbol">:detail</span>, <span class="symbol">param:</span> <span class="symbol">:detail_id</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><br>这次，将会生成<code>/task/:task_id/detail/:detail_id</code>这样的url，这样在controller进行渲染的时候可以渲染出正确url</p>
+<h3 id="PUT-vs-POST"><a href="#PUT-vs-POST" class="headerlink" title="PUT vs POST"></a>PUT vs POST</h3><p>在HTTP中<code>POST</code>意味着创建一个新的对象，而<code>PUT</code>意味着是更新该对象操作。<br>由于web的form中的submit按钮会自动使用<code>POST</code>方法来推送消息，但是在实际场景中，form的数据可能是更新的情况，不应该使用<code>POST</code>消息，而是使用<code>PUT</code>消息，但是在form中的method即使修改为<code>PUT</code>后，浏览器自动忽略该行为，并自动修改为<code>GET</code>请求。<br>浏览器已经考虑了上述情况，做了工程实践上的妥协，添加如下标签后，该form的推送方法将使用<code>PUT</code>方式:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&#x27;hidden&#x27;</span> <span class="attr">name</span>=<span class="string">&#x27;_method&#x27;</span> <span class="attr">value</span>=<span class="string">&#x27;PUT&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure><br>或者是slim的代码<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=f.text_field :name, type: &#x27;hidden&#x27;, name: &#x27;_method&#x27;, value:&#x27;PUT&#x27;</span><br></pre></td></tr></table></figure></p>
 
     </article>
     <!-- license  -->
@@ -454,7 +441,7 @@ height:50vh;
     var gitment = new Gitment({
         // id: "rails记录", // 可选。默认为 location.href
         owner: 'warvyvr',
-        repo: 'https://github.com/warvyvr/blog-comment',
+        repo: 'blog-comment',
         oauth: {
             client_id: '75aa52ba876e56d2ddd0',
             client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
@@ -1025,17 +1012,47 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
+    
         <span class="sidebar-tag-name" data-tags="graph"><span class="iconfont-archer">&#xe606;</span>graph</span>
+    
+        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
+        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
     
         <span class="sidebar-tag-name" data-tags="Ambari"><span class="iconfont-archer">&#xe606;</span>Ambari</span>
     
-        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
-    
-        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
@@ -1043,53 +1060,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="HDFS"><span class="iconfont-archer">&#xe606;</span>HDFS</span>
     
+        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
+    
+        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="jenv"><span class="iconfont-archer">&#xe606;</span>jenv</span>
     
-        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
-    
-        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
-    
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
+        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
+    
         <span class="sidebar-tag-name" data-tags="rails"><span class="iconfont-archer">&#xe606;</span>rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
-    
-        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
-    
-        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
-    
-        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
-    
-        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
-    
-        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
-    
-        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
-    
-        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
-    
-        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
-    
-        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
-    
-        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
-    
-        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
-    
-        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1124,13 +1111,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
+        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
     
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
     
         <span class="sidebar-category-name" data-categories="misc"><span class="iconfont-archer">&#xe60a;</span>misc</span>
     
-        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     

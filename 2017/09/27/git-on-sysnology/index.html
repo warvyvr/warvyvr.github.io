@@ -274,7 +274,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">361</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">348</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -405,24 +405,8 @@ height:50vh;
     <article class="article-entry">
         <p>最近由于有些代码需要保存在自己的家里的电脑上，而不能放在github上。所以打算在家里的群晖上安装gitlab，在gitlab官网发现gitlab只能安装在64位的环境下，顿时心里凉了半截。<br>没办法，只能在216上手工开启git的方式。</p>
 <h1 id="在web上安装git-server"><a href="#在web上安装git-server" class="headerlink" title="在web上安装git server"></a>在web上安装git server</h1><p>首先，在群晖的管理界面上的安装<code>git server</code>，然后选择需要开启git server的用户，假如需要使用git的用户叫做james。<br>然后再开启该服务之前需要开启<code>ssh</code>服务。</p>
-<h1 id="配置git数据仓库的路径"><a href="#配置git数据仓库的路径" class="headerlink" title="配置git数据仓库的路径"></a>配置git数据仓库的路径</h1><p>在使用ssh登陆到群晖NAS后，在<code>volume1</code>下创建git仓库文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir git_repos</span><br></pre></td></tr></table></figure>
-<p>然后在该路径下创建bare类型的git仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir code1</span><br><span class="line">cd code1</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
-<p>然后给<code>git_repos</code>文件夹赋予权限</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /volume1</span><br><span class="line">chown -R james:users git_repos</span><br><span class="line">chmod -R 755 git_repos</span><br></pre></td></tr></table></figure>
-<p>需要在git repo上开启接受消息后的抑制拒绝的功能</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /volume1/git_repos/code1</span><br><span class="line">git config receive.denyCurrentBranch ignore</span><br></pre></td></tr></table></figure>
-
-<h1 id="客户端的配置"><a href="#客户端的配置" class="headerlink" title="客户端的配置"></a>客户端的配置</h1><p>可以是在已有的文件夹下操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin ssh://james@&lt;ip&gt;/volume1/git_repos/code1</span><br></pre></td></tr></table></figure>
-<p>也可以是直接clone仓库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://james@&lt;ip&gt;/volume1/git_repos/code1</span><br></pre></td></tr></table></figure>
-<p>接下来就是日常的git命令操作了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add</span><br><span class="line">git commit</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-<p>另外在commit前需要配置user name和email</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --global user.email &quot;james.q.zhang@outlook.com&quot;</span><br><span class="line">git --global user.name &quot;james&quot;</span><br></pre></td></tr></table></figure>
-<p>这样在NAS上设置git server的流程就全部OK了。</p>
+<h1 id="配置git数据仓库的路径"><a href="#配置git数据仓库的路径" class="headerlink" title="配置git数据仓库的路径"></a>配置git数据仓库的路径</h1><p>在使用ssh登陆到群晖NAS后，在<code>volume1</code>下创建git仓库文件夹<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir git_repos</span><br></pre></td></tr></table></figure><br>然后在该路径下创建bare类型的git仓库<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir code1</span><br><span class="line">cd code1</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure><br>然后给<code>git_repos</code>文件夹赋予权限<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /volume1</span><br><span class="line">chown -R james:users git_repos</span><br><span class="line">chmod -R 755 git_repos</span><br></pre></td></tr></table></figure><br>需要在git repo上开启接受消息后的抑制拒绝的功能<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /volume1/git_repos/code1</span><br><span class="line">git config receive.denyCurrentBranch ignore</span><br></pre></td></tr></table></figure></p>
+<h1 id="客户端的配置"><a href="#客户端的配置" class="headerlink" title="客户端的配置"></a>客户端的配置</h1><p>可以是在已有的文件夹下操作<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin ssh://james@&lt;ip&gt;/volume1/git_repos/code1</span><br></pre></td></tr></table></figure><br>也可以是直接clone仓库<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://james@&lt;ip&gt;/volume1/git_repos/code1</span><br></pre></td></tr></table></figure><br>接下来就是日常的git命令操作了<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add</span><br><span class="line">git commit</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure><br>另外在commit前需要配置user name和email<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --global user.email &quot;james.q.zhang@outlook.com&quot;</span><br><span class="line">git --global user.name &quot;james&quot;</span><br></pre></td></tr></table></figure><br>这样在NAS上设置git server的流程就全部OK了。</p>
 
     </article>
     <!-- license  -->
@@ -459,7 +443,7 @@ height:50vh;
     var gitment = new Gitment({
         // id: "在群晖216上搭建git服务器步骤", // 可选。默认为 location.href
         owner: 'warvyvr',
-        repo: 'https://github.com/warvyvr/blog-comment',
+        repo: 'blog-comment',
         oauth: {
             client_id: '75aa52ba876e56d2ddd0',
             client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
@@ -1030,17 +1014,47 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
+    
         <span class="sidebar-tag-name" data-tags="graph"><span class="iconfont-archer">&#xe606;</span>graph</span>
+    
+        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
+        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
     
         <span class="sidebar-tag-name" data-tags="Ambari"><span class="iconfont-archer">&#xe606;</span>Ambari</span>
     
-        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
-    
-        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
@@ -1048,53 +1062,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="HDFS"><span class="iconfont-archer">&#xe606;</span>HDFS</span>
     
+        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
+    
+        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="jenv"><span class="iconfont-archer">&#xe606;</span>jenv</span>
     
-        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
-    
-        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
-    
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
+        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
+    
         <span class="sidebar-tag-name" data-tags="rails"><span class="iconfont-archer">&#xe606;</span>rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
-    
-        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
-    
-        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
-    
-        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
-    
-        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
-    
-        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
-    
-        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
-    
-        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
-    
-        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
-    
-        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
-    
-        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
-    
-        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
-    
-        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1129,13 +1113,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
+        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
     
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
     
         <span class="sidebar-category-name" data-categories="misc"><span class="iconfont-archer">&#xe60a;</span>misc</span>
     
-        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     

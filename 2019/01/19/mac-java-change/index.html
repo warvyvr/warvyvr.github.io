@@ -276,7 +276,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">610</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">606</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -405,30 +405,18 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>mac下默认的JDK1.8通过如下方法获得</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">/usr/libexec/java_home -V</span></span><br><span class="line"></span><br><span class="line">Matching Java Virtual Machines (1):</span><br><span class="line">1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
-
-<p>当你将Oracle JDK11(例如jdk-11.0.5）或其他其他JDK放入文件夹/Library/Java/JavaVirtualMachines/jdk11xxx后，，这是java_home的输出是这样的:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">/usr/libexec/java_home -V</span></span><br><span class="line"></span><br><span class="line">Matching Java Virtual Machines (2):</span><br><span class="line">11.0.5, x86_64: &quot;Java SE 11.0.5&quot; /Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home</span><br><span class="line">1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
-<p>系统默认使用最高版本的JDK：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">java -version</span></span><br><span class="line">java version &quot;11.0.5&quot; 2019-10-15 LTS</span><br><span class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.5+10-LTS)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.5+10-LTS, mixed mode)</span><br></pre></td></tr></table></figure>
-
+        <p>mac下默认的JDK1.8通过如下方法获得<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/usr/libexec/java_home -V</span></span><br><span class="line"></span><br><span class="line">Matching Java Virtual Machines (1):</span><br><span class="line">1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br></pre></td></tr></table></figure></p>
+<p>当你将Oracle JDK11(例如jdk-11.0.5）或其他其他JDK放入文件夹/Library/Java/JavaVirtualMachines/jdk11xxx后，，这是java_home的输出是这样的:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/usr/libexec/java_home -V</span></span><br><span class="line"></span><br><span class="line">Matching Java Virtual Machines (2):</span><br><span class="line">11.0.5, x86_64: &quot;Java SE 11.0.5&quot; /Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home</span><br><span class="line">1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home</span><br></pre></td></tr></table></figure><br>系统默认使用最高版本的JDK：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">java -version</span></span><br><span class="line">java version &quot;11.0.5&quot; 2019-10-15 LTS</span><br><span class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.5+10-LTS)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.5+10-LTS, mixed mode)</span><br></pre></td></tr></table></figure></p>
 <p>有时候我们希望默认使用低版本的JDK，而是在某个工程中使用高版本的JDK，这时候要怎么办，</p>
-<p>将JDK 11 Home路径下的Info.plist改名为info.plist.disabled，然后java_home显示JDK 11不被找到，并全局使用JDK 1.8</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">/usr/libexec/jenv -V</span></span><br><span class="line"></span><br><span class="line">Matching Java Virtual Machines (2):</span><br><span class="line">1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
-
+<p>将JDK 11 Home路径下的Info.plist改名为info.plist.disabled，然后java_home显示JDK 11不被找到，并全局使用JDK 1.8<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/usr/libexec/jenv -V</span></span><br><span class="line"></span><br><span class="line">Matching Java Virtual Machines (2):</span><br><span class="line">1.8.0_172, x86_64: &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span><br></pre></td></tr></table></figure></p>
 <p>再此之后，我们该怎么使用JDK11呢，需要不停的修改不同版本的JDK的info.plist文件，这样会很麻烦。</p>
 <p>一个简洁的办法是通过jenv管理本地的JDK版本。</p>
 <p>jenv可以控制全局、文件夹、shell会话的JDK版本。通过brew可以安装jenv：<code>brew install jenv</code><br>全局设置: <code>jenv global xxx</code><br>文件夹设置：<code>jenv local xxx</code><br>shell会话设置：<code>jenv sh-shell xxx</code><br>显示当前使用的版本: <code>jenv version</code><br>显示所有系统jdk版本：<code>jenv versions</code></p>
-<p>然后按照<a target="_blank" rel="noopener" href="https://www.jenv.be/">https://www.jenv.be/</a> 下介绍的步骤修改zsh或者bash的rc文件，这里以zsh为例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$HOME/.jenv/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(jenv init -)&quot;&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br></pre></td></tr></table></figure>
-<p>然后通过jenv add 来将JDK的版本到jenv中：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">jenv add  /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span></span><br><span class="line"><span class="meta">#</span><span class="bash">jenv add /Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">jenv versions</span></span><br><span class="line"></span><br><span class="line">system (set by /Users/james/.jenv/version)</span><br><span class="line">1.8</span><br><span class="line">1.8.0.172</span><br><span class="line">11.0</span><br><span class="line">11.0.5</span><br><span class="line">oracle64-1.8.0.172</span><br><span class="line">oracle64-11.0.5</span><br></pre></td></tr></table></figure>
-
+<p>然后按照<a target="_blank" rel="noopener" href="https://www.jenv.be/">https://www.jenv.be/</a> 下介绍的步骤修改zsh或者bash的rc文件，这里以zsh为例：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$HOME/.jenv/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(jenv init -)&quot;&#x27;</span> &gt;&gt; ~/.zshrc</span></span><br></pre></td></tr></table></figure><br>然后通过jenv add 来将JDK的版本到jenv中：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">jenv add  /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">jenv add /Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">jenv versions</span></span><br><span class="line"></span><br><span class="line">system (set by /Users/james/.jenv/version)</span><br><span class="line">1.8</span><br><span class="line">1.8.0.172</span><br><span class="line">11.0</span><br><span class="line">11.0.5</span><br><span class="line">oracle64-1.8.0.172</span><br><span class="line">oracle64-11.0.5</span><br></pre></td></tr></table></figure></p>
 <p>如果某个工程需要使用不同版本的JDK，例如全局为JDK1.8，而某个工程使用JDK 11，那么在该工程文件夹下:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">jenv <span class="built_in">local</span> 11.0</span> </span><br></pre></td></tr></table></figure>
-<p>如果该工程是maven工程还需要(很重要):</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">jenv enalbe-plugin maven</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">jenv <span class="built_in">local</span> 11.0</span> </span><br></pre></td></tr></table></figure>
+<p>如果该工程是maven工程还需要(很重要):<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">jenv enalbe-plugin maven</span></span><br></pre></td></tr></table></figure></p>
+
     </article>
     <!-- license  -->
     
@@ -464,7 +452,7 @@ height:50vh;
     var gitment = new Gitment({
         // id: "MAC下切换java版本的方法", // 可选。默认为 location.href
         owner: 'warvyvr',
-        repo: 'https://github.com/warvyvr/blog-comment',
+        repo: 'blog-comment',
         oauth: {
             client_id: '75aa52ba876e56d2ddd0',
             client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
@@ -1035,17 +1023,47 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
+    
         <span class="sidebar-tag-name" data-tags="graph"><span class="iconfont-archer">&#xe606;</span>graph</span>
+    
+        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
+        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
     
         <span class="sidebar-tag-name" data-tags="Ambari"><span class="iconfont-archer">&#xe606;</span>Ambari</span>
     
-        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
-    
-        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
@@ -1053,53 +1071,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="HDFS"><span class="iconfont-archer">&#xe606;</span>HDFS</span>
     
+        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
+    
+        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="jenv"><span class="iconfont-archer">&#xe606;</span>jenv</span>
     
-        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
-    
-        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
-    
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
+        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
+    
         <span class="sidebar-tag-name" data-tags="rails"><span class="iconfont-archer">&#xe606;</span>rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
-    
-        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
-    
-        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
-    
-        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
-    
-        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
-    
-        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
-    
-        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
-    
-        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
-    
-        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
-    
-        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
-    
-        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
-    
-        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
-    
-        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1134,13 +1122,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
+        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
     
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
     
         <span class="sidebar-category-name" data-categories="misc"><span class="iconfont-archer">&#xe60a;</span>misc</span>
     
-        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     

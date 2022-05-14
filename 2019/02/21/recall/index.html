@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">732</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">724</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -416,15 +416,9 @@ height:50vh;
 <p>我们可以使用一个 2x2 混淆矩阵来总结我们的“狼预测”模型，该矩阵描述了所有可能出现的结果（共四种）：  </p>
 <p><img src="/img/r1.png" alt="111"></p>
 <p>真正例是指模型将正类别样本正确地预测为正类别。同样，真负例是指模型将负类别样本正确地预测为负类别。<br>假正例是指模型将负类别样本错误地预测为正类别，而假负例是指模型将正类别样本错误地预测为负类别。</p>
-<p>假正例，在混淆矩阵也叫做<code>Type Error 1</code>，假负例，在混淆矩阵中叫做<code>Type Error 2</code>。<br>TPR：在所有实际为阳性的样本中，被<strong>正确地</strong>判断为阳性的比例。<br>FPR：在所有实际为阴性的样本中，被<strong>错误地</strong>判断为阳性的比例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TPR &#x3D; TP&#x2F;(TP+FN)</span><br><span class="line">FPR &#x3D; FP&#x2F;(FP+TN)</span><br></pre></td></tr></table></figure>
-<h2 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h2><p>召回率(Recall Rate,也叫查全率)是检索出的相关文档数和文档库中所有的相关文档数的比率，衡量的是检索系统的查全率；精度是检索出的相关文档数与检索出的文档总数的比率，衡量的是检索系统的查准率。<br>也就是查全率，数值越大意味着覆盖的越全面。<br>公式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R &#x3D; TP&#x2F; (TP+FN)</span><br></pre></td></tr></table></figure>
-<p>例如在医疗系统中，尽量的覆盖更高的召回率，这样就减少漏掉病症的情况，虽然精准率收到影响，也就是说可能把没有病的当成有病的了（FP增多）。</p>
-<h2 id="精准率"><a href="#精准率" class="headerlink" title="精准率"></a>精准率</h2><p>正确预测为正占全部预测为正的比例，只能评估模型在样本数据中的准确率。<br>公式为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P &#x3D; TP &#x2F; (TP + FP)</span><br></pre></td></tr></table></figure>
-
-
+<p>假正例，在混淆矩阵也叫做<code>Type Error 1</code>，假负例，在混淆矩阵中叫做<code>Type Error 2</code>。<br>TPR：在所有实际为阳性的样本中，被<strong>正确地</strong>判断为阳性的比例。<br>FPR：在所有实际为阴性的样本中，被<strong>错误地</strong>判断为阳性的比例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TPR = TP/(TP+FN)</span><br><span class="line">FPR = FP/(FP+TN)</span><br></pre></td></tr></table></figure></p>
+<h2 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h2><p>召回率(Recall Rate,也叫查全率)是检索出的相关文档数和文档库中所有的相关文档数的比率，衡量的是检索系统的查全率；精度是检索出的相关文档数与检索出的文档总数的比率，衡量的是检索系统的查准率。<br>也就是查全率，数值越大意味着覆盖的越全面。<br>公式为：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R = TP/ (TP+FN)</span><br></pre></td></tr></table></figure><br>例如在医疗系统中，尽量的覆盖更高的召回率，这样就减少漏掉病症的情况，虽然精准率收到影响，也就是说可能把没有病的当成有病的了（FP增多）。</p>
+<h2 id="精准率"><a href="#精准率" class="headerlink" title="精准率"></a>精准率</h2><p>正确预测为正占全部预测为正的比例，只能评估模型在样本数据中的准确率。<br>公式为：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P = TP / (TP + FP)</span><br></pre></td></tr></table></figure></p>
 <h2 id="拔河比赛"><a href="#拔河比赛" class="headerlink" title="拔河比赛"></a>拔河比赛</h2><p>精准率和召回率本身是一场拔河比赛。</p>
 <p>后续更新。</p>
 
@@ -463,7 +457,7 @@ height:50vh;
     var gitment = new Gitment({
         // id: "召回率以及准确率概念", // 可选。默认为 location.href
         owner: 'warvyvr',
-        repo: 'https://github.com/warvyvr/blog-comment',
+        repo: 'blog-comment',
         oauth: {
             client_id: '75aa52ba876e56d2ddd0',
             client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
@@ -1034,17 +1028,47 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
+    
         <span class="sidebar-tag-name" data-tags="graph"><span class="iconfont-archer">&#xe606;</span>graph</span>
+    
+        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
+        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
     
         <span class="sidebar-tag-name" data-tags="Ambari"><span class="iconfont-archer">&#xe606;</span>Ambari</span>
     
-        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
-    
-        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
@@ -1052,53 +1076,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="HDFS"><span class="iconfont-archer">&#xe606;</span>HDFS</span>
     
+        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
+    
+        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="jenv"><span class="iconfont-archer">&#xe606;</span>jenv</span>
     
-        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
-    
-        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
-    
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
+        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
+    
         <span class="sidebar-tag-name" data-tags="rails"><span class="iconfont-archer">&#xe606;</span>rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
-    
-        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
-    
-        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
-    
-        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
-    
-        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
-    
-        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
-    
-        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
-    
-        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
-    
-        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
-    
-        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
-    
-        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
-    
-        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
-    
-        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1133,13 +1127,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
+        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
     
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
     
         <span class="sidebar-category-name" data-categories="misc"><span class="iconfont-archer">&#xe60a;</span>misc</span>
     
-        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     

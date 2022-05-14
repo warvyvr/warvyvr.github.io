@@ -402,41 +402,19 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在mac上通过multipass安装好Ubuntu后，开始microk8s之旅。按照microk8s的教程，可以先启动dashboard玩玩，索性就按照官方的教程走了。本文记录的是在安装 dashboard过程中遇到的一些坑。</p>
-<h1 id="服务无法启动"><a href="#服务无法启动" class="headerlink" title="服务无法启动"></a>服务无法启动</h1><p>按照官方给的教程，开启dashboard，以为这样就可以了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@microk8s-vm2:~$ microk8s.enable dashboard</span><br></pre></td></tr></table></figure>
-<p>然后查看仪表盘的pod。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@microk8s-vm2:~$ microk8s.kubectl get pods --all-namespaces </span><br><span class="line">NAMESPACE     NAME                                              READY   STATUS              RESTARTS   AGE</span><br><span class="line">kube-system   coredns-7b67f9f8c-nqj2x                           0/1     ContainerCreating   0          4m41s</span><br><span class="line">kube-system   dashboard-metrics-scraper-687667bb6c-pdfbq        0/1     ContainerCreating   0          58s</span><br><span class="line">kube-system   heapster-v1.5.2-5c58f64f8b-6bdjs                  0/4     ContainerCreating   0          57s</span><br><span class="line">kube-system   kubernetes-dashboard-5c848cc544-26gt8             0/1     ContainerCreating   0          58s</span><br><span class="line">kube-system   monitoring-influxdb-grafana-v4-6d599df6bf-j4bq7   0/2     ContainerCreating   0          58s</span><br></pre></td></tr></table></figure>
-<p>发现pod的状态并不是期望的running状态而是<code>ContainerCreating</code>容器创建阶段。<br>查看<code>kubernetes-dashboard</code> pod的状态。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">microk8s.kubectl describe pod/kubernetes-dashboard-5c848cc544-26gt8 --namespace kube-system</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Events:</span><br><span class="line">  Type     Reason                  Age                From                   Message</span><br><span class="line">  ----     ------                  ----               ----                   -------</span><br><span class="line">  Normal   Scheduled               95s                default-scheduler      Successfully assigned kube-system/kubernetes-dashboard-5c848cc544-26gt8 to microk8s-vm2</span><br><span class="line">  Warning  FailedCreatePodSandBox  21s (x2 over 64s)  kubelet, microk8s-vm2  Failed to create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox image &quot;k8s.gcr.io/pause:3.1&quot;: failed to pull image &quot;k8s.gcr.io/pause:3.1&quot;: failed to resolve image &quot;k8s.gcr.io/pause:3.1&quot;: no available registry endpoint: failed to do request: Head https://k8s.gcr.io/v2/pause/manifests/3.1: dial tcp 64.233.189.82:443: i/o timeout</span><br></pre></td></tr></table></figure>
-<p>从Events中的Message可以看出容器是要由于镜像无法下载下来导致的。从网上搜索一下，发现由于k8s.gcr.io域名无法访问，导致容器创建不出来。<br>通过一番折腾，发现hub.docker.com已经克隆了k8s.gcr.io相关的容器，提供给大家使用，因此，只要用docker把镜像下载下来然后重新命名就好了。<br>通过这个<a target="_blank" rel="noopener" href="https://gist.github.com/warvyvr/d52a9cf6a268e7aad5a213e6f05b7826">gist</a>来下载并重命名容器。<br>然后重新disable/enable仪表盘后发现仍然没有好用。<br>然后在网上再一次搜索后，microk8s的页面介绍并没有注册的docker image是不会被k8s使用的，需要export and import才行。</p>
+<h1 id="服务无法启动"><a href="#服务无法启动" class="headerlink" title="服务无法启动"></a>服务无法启动</h1><p>按照官方给的教程，开启dashboard，以为这样就可以了。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@microk8s-vm2:~$ microk8s.enable dashboard</span><br></pre></td></tr></table></figure><br>然后查看仪表盘的pod。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@microk8s-vm2:~$ microk8s.kubectl get pods --all-namespaces </span><br><span class="line">NAMESPACE     NAME                                              READY   STATUS              RESTARTS   AGE</span><br><span class="line">kube-system   coredns-7b67f9f8c-nqj2x                           0/1     ContainerCreating   0          4m41s</span><br><span class="line">kube-system   dashboard-metrics-scraper-687667bb6c-pdfbq        0/1     ContainerCreating   0          58s</span><br><span class="line">kube-system   heapster-v1.5.2-5c58f64f8b-6bdjs                  0/4     ContainerCreating   0          57s</span><br><span class="line">kube-system   kubernetes-dashboard-5c848cc544-26gt8             0/1     ContainerCreating   0          58s</span><br><span class="line">kube-system   monitoring-influxdb-grafana-v4-6d599df6bf-j4bq7   0/2     ContainerCreating   0          58s</span><br></pre></td></tr></table></figure><br>发现pod的状态并不是期望的running状态而是<code>ContainerCreating</code>容器创建阶段。<br>查看<code>kubernetes-dashboard</code> pod的状态。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">microk8s.kubectl describe pod/kubernetes-dashboard-5c848cc544-26gt8 --namespace kube-system</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Events:</span><br><span class="line">  Type     Reason                  Age                From                   Message</span><br><span class="line">  ----     ------                  ----               ----                   -------</span><br><span class="line">  Normal   Scheduled               95s                default-scheduler      Successfully assigned kube-system/kubernetes-dashboard-5c848cc544-26gt8 to microk8s-vm2</span><br><span class="line">  Warning  FailedCreatePodSandBox  21s (x2 over 64s)  kubelet, microk8s-vm2  Failed to create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox image &quot;k8s.gcr.io/pause:3.1&quot;: failed to pull image &quot;k8s.gcr.io/pause:3.1&quot;: failed to resolve image &quot;k8s.gcr.io/pause:3.1&quot;: no available registry endpoint: failed to do request: Head https://k8s.gcr.io/v2/pause/manifests/3.1: dial tcp 64.233.189.82:443: i/o timeout</span><br></pre></td></tr></table></figure><br>从Events中的Message可以看出容器是要由于镜像无法下载下来导致的。从网上搜索一下，发现由于k8s.gcr.io域名无法访问，导致容器创建不出来。<br>通过一番折腾，发现hub.docker.com已经克隆了k8s.gcr.io相关的容器，提供给大家使用，因此，只要用docker把镜像下载下来然后重新命名就好了。<br>通过这个<a target="_blank" rel="noopener" href="https://gist.github.com/warvyvr/d52a9cf6a268e7aad5a213e6f05b7826">gist</a>来下载并重命名容器。<br>然后重新disable/enable仪表盘后发现仍然没有好用。<br>然后在网上再一次搜索后，microk8s的页面介绍并没有注册的docker image是不会被k8s使用的，需要export and import才行。</p>
 <blockquote>
-<p>The image we created is known to Docker. However, Kubernetes is not aware of the newly built image. This is because your local Docker daemon is not part of the MicroK8s Kubernetes cluster. We can export the built image from the local Docker daemon and “inject” it into the MicroK8s image cache like this:</p>
+<p>The image we created is known to Docker. However, Kubernetes is not aware of the newly built image. This is because your local Docker daemon is not part of the MicroK8s Kubernetes cluster. We can export the built image from the local Docker daemon and “inject” it into the MicroK8s image cache like this:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker save mynginx &gt; myimage.tar</span><br><span class="line">microk8s.ctr image import myimage.tar</span><br></pre></td></tr></table></figure><br>因此，在通过一番脚本操作后，将docker image导出到本地，然后在导入到k8s环境中，相关操作在这个<a target="_blank" rel="noopener" href="https://gist.github.com/warvyvr/006e0ce89ff263d2fdd9992edde00301">gist</a>中描述。<br>再次查看dashboard的pod状态，运行起来的pod的状态是这样的:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">microk8s.kubectl get pods --all-namespaces</span></span><br><span class="line">NAMESPACE     NAME                                              READY   STATUS             RESTARTS   AGE</span><br><span class="line">kube-system   coredns-7b67f9f8c-bw2h8                           1/1     Running            0          22h</span><br><span class="line">kube-system   dashboard-metrics-scraper-687667bb6c-vhzp4        1/1     Running            0          3h33m</span><br><span class="line">kube-system   heapster-v1.5.2-5c58f64f8b-xz55d                  2/4     ImagePullBackOff   0          3h33m</span><br><span class="line">kube-system   kubernetes-dashboard-5c848cc544-bpf2g             1/1     Running            0          3h33m</span><br><span class="line">kube-system   monitoring-influxdb-grafana-v4-6d599df6bf-6jpq8   0/2     ImagePullBackOff   0          3h33m</span><br></pre></td></tr></table></figure><br>接下来即将跳入第二个坑。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker save mynginx &gt; myimage.tar</span><br><span class="line">microk8s.ctr image import myimage.tar</span><br></pre></td></tr></table></figure>
-<p>因此，在通过一番脚本操作后，将docker image导出到本地，然后在导入到k8s环境中，相关操作在这个<a target="_blank" rel="noopener" href="https://gist.github.com/warvyvr/006e0ce89ff263d2fdd9992edde00301">gist</a>中描述。<br>再次查看dashboard的pod状态，运行起来的pod的状态是这样的:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">microk8s.kubectl get pods --all-namespaces</span></span><br><span class="line">NAMESPACE     NAME                                              READY   STATUS             RESTARTS   AGE</span><br><span class="line">kube-system   coredns-7b67f9f8c-bw2h8                           1/1     Running            0          22h</span><br><span class="line">kube-system   dashboard-metrics-scraper-687667bb6c-vhzp4        1/1     Running            0          3h33m</span><br><span class="line">kube-system   heapster-v1.5.2-5c58f64f8b-xz55d                  2/4     ImagePullBackOff   0          3h33m</span><br><span class="line">kube-system   kubernetes-dashboard-5c848cc544-bpf2g             1/1     Running            0          3h33m</span><br><span class="line">kube-system   monitoring-influxdb-grafana-v4-6d599df6bf-6jpq8   0/2     ImagePullBackOff   0          3h33m</span><br></pre></td></tr></table></figure>
-<p>接下来即将跳入第二个坑。</p>
-<h1 id="访问地址问题"><a href="#访问地址问题" class="headerlink" title="访问地址问题"></a>访问地址问题</h1><p>然后在通过官方给的教程，通过<code>port-forward</code>来启动端口转发功能</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> microk8s.kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address 0.0.0.0</span></span><br></pre></td></tr></table></figure>
-<p>通过浏览器访问ubuntu的dashboard url: </p>
+<h1 id="访问地址问题"><a href="#访问地址问题" class="headerlink" title="访问地址问题"></a>访问地址问题</h1><p>然后在通过官方给的教程，通过<code>port-forward</code>来启动端口转发功能<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">microk8s.kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address 0.0.0.0</span></span><br></pre></td></tr></table></figure><br>通过浏览器访问ubuntu的dashboard url: </p>
 <blockquote>
-<p>192.168.64.7:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/<br>浏览器显示为&gt;</p>
+<p>192.168.64.7:10443/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/<br>浏览器显示为&gt;<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client sent an http request to an https server</span><br></pre></td></tr></table></figure><br>这是什么鬼，通过一番折腾后发现来proxy命令。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># microk8s.kubectl proxy --address 0.0.0.0</span><br></pre></td></tr></table></figure><br>这次终于能够在浏览器上看到久违的dashboard的鉴权界面<br><img src="../../../../../img/k8s-dashboard.png" alt="k8s-dashboard"><br>然而这不是故事的结束。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client sent an http request to an https server</span><br></pre></td></tr></table></figure>
-<p>这是什么鬼，通过一番折腾后发现来proxy命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># microk8s.kubectl proxy --address 0.0.0.0</span><br></pre></td></tr></table></figure>
-<p>这次终于能够在浏览器上看到久违的dashboard的鉴权界面<br><img src="../../../../../img/k8s-dashboard.png" alt="k8s-dashboard"><br>然而这不是故事的结束。</p>
-<h1 id="访问地址限制"><a href="#访问地址限制" class="headerlink" title="访问地址限制"></a>访问地址限制</h1><p>当我兴高采烈的拿到token信息，输入到web上的时候。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut -d &quot; &quot; -f1)</span><br><span class="line">microk8s.kubectl -n kube-system describe secret $token</span><br></pre></td></tr></table></figure>
-<p>然而并没有发生什么。页面没有提示错误，也没有跳转到仪表盘中。<br>让然停留在输入token的页面，就像没有输入一样。<br>我以为浏览器或者网络还有什么问题没有解决，因此我检查了该页面的控制台以及网络传输中是否有错误信息存在，结果一切都很安静，并没有报错，也没有异常存在，因此我再次陷入来久久的沉思😔。<br>再一次折腾谷歌，没有多一会在dashboard的issue list中找到了曙光。<a target="_blank" rel="noopener" href="https://github.com/kubernetes/dashboard/issues/2735">https://github.com/kubernetes/dashboard/issues/2735</a></p>
+<h1 id="访问地址限制"><a href="#访问地址限制" class="headerlink" title="访问地址限制"></a>访问地址限制</h1><p>当我兴高采烈的拿到token信息，输入到web上的时候。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut -d &quot; &quot; -f1)</span><br><span class="line">microk8s.kubectl -n kube-system describe secret $token</span><br></pre></td></tr></table></figure><br>然而并没有发生什么。页面没有提示错误，也没有跳转到仪表盘中。<br>让然停留在输入token的页面，就像没有输入一样。<br>我以为浏览器或者网络还有什么问题没有解决，因此我检查了该页面的控制台以及网络传输中是否有错误信息存在，结果一切都很安静，并没有报错，也没有异常存在，因此我再次陷入来久久的沉思😔。<br>再一次折腾谷歌，没有多一会在dashboard的issue list中找到了曙光。<a target="_blank" rel="noopener" href="https://github.com/kubernetes/dashboard/issues/2735">https://github.com/kubernetes/dashboard/issues/2735</a></p>
 <blockquote>
 <p>NOTE: Dashboard should not be exposed publicly using kubectl proxy command as it only allows HTTP connection. For domains other than localhost and 127.0.0.1 it will not be possible to sign in. Nothing will happen after clicking Sign in button on login page.</p>
 </blockquote>
-<p>也就是说dashboard的访问只能给127.0.0.0.1这个地址。其他地址无效。<br>这个帖子的下面提到来解决版本，那就是伟大的ssl端口转发功能。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 127.0.0.1:8001:192.168.64.7:8001 ubuntu@192.168.64.7</span><br></pre></td></tr></table></figure>
-<p>再次访问dashboard url,bull-eyes!!! 正中靶心，🍺🎉🎉</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/</span><br></pre></td></tr></table></figure>
-<p><img src="../../../../../img/k8s-dashboard-200.png" alt="k8s-dashboard"></p>
+<p>也就是说dashboard的访问只能给127.0.0.0.1这个地址。其他地址无效。<br>这个帖子的下面提到来解决版本，那就是伟大的ssl端口转发功能。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 127.0.0.1:8001:192.168.64.7:8001 ubuntu@192.168.64.7</span><br></pre></td></tr></table></figure><br>再次访问dashboard url,bull-eyes!!! 正中靶心，🍺🎉🎉<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/</span><br></pre></td></tr></table></figure><br><img src="../../../../../img/k8s-dashboard-200.png" alt="k8s-dashboard"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>折腾microk8s需要耐心也考验对问题的剖析以及推断的能力，遇到事情不放弃，从各种蛛丝马迹中找到可以突破的点。<br>同时吐槽一下microk8s的项目，项目很优秀，但是文档并没有太多的具有排障能力，嗯，也有可能我太弱鸡了。</p>
 
     </article>
@@ -474,7 +452,7 @@ height:50vh;
     var gitment = new Gitment({
         // id: "microk8s Dashboard遇坑记", // 可选。默认为 location.href
         owner: 'warvyvr',
-        repo: 'https://github.com/warvyvr/blog-comment',
+        repo: 'blog-comment',
         oauth: {
             client_id: '75aa52ba876e56d2ddd0',
             client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
@@ -1045,17 +1023,47 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
+    
         <span class="sidebar-tag-name" data-tags="graph"><span class="iconfont-archer">&#xe606;</span>graph</span>
+    
+        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
+    
+        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
+    
+        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
+    
+        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
+    
+        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
+    
+        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
+    
+        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+    
+        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
+    
+        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
+    
+        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
+    
+        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
     
         <span class="sidebar-tag-name" data-tags="Hadoop"><span class="iconfont-archer">&#xe606;</span>Hadoop</span>
     
         <span class="sidebar-tag-name" data-tags="Ambari"><span class="iconfont-archer">&#xe606;</span>Ambari</span>
     
-        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
     
-        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
-    
-        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
@@ -1063,53 +1071,23 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="HDFS"><span class="iconfont-archer">&#xe606;</span>HDFS</span>
     
+        <span class="sidebar-tag-name" data-tags="xcrun"><span class="iconfont-archer">&#xe606;</span>xcrun</span>
+    
+        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+    
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="jenv"><span class="iconfont-archer">&#xe606;</span>jenv</span>
     
-        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
-    
-        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
-    
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
         <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
     
+        <span class="sidebar-tag-name" data-tags="microk8s"><span class="iconfont-archer">&#xe606;</span>microk8s</span>
+    
         <span class="sidebar-tag-name" data-tags="rails"><span class="iconfont-archer">&#xe606;</span>rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="机器学习"><span class="iconfont-archer">&#xe606;</span>机器学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="度"><span class="iconfont-archer">&#xe606;</span>度</span>
-    
-        <span class="sidebar-tag-name" data-tags="firmware"><span class="iconfont-archer">&#xe606;</span>firmware</span>
-    
-        <span class="sidebar-tag-name" data-tags="alios"><span class="iconfont-archer">&#xe606;</span>alios</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全"><span class="iconfont-archer">&#xe606;</span>安全</span>
-    
-        <span class="sidebar-tag-name" data-tags="安全, https"><span class="iconfont-archer">&#xe606;</span>安全, https</span>
-    
-        <span class="sidebar-tag-name" data-tags="elf分析"><span class="iconfont-archer">&#xe606;</span>elf分析</span>
-    
-        <span class="sidebar-tag-name" data-tags="wasm"><span class="iconfont-archer">&#xe606;</span>wasm</span>
-    
-        <span class="sidebar-tag-name" data-tags="WebAssembly"><span class="iconfont-archer">&#xe606;</span>WebAssembly</span>
-    
-        <span class="sidebar-tag-name" data-tags="wast"><span class="iconfont-archer">&#xe606;</span>wast</span>
-    
-        <span class="sidebar-tag-name" data-tags="wine"><span class="iconfont-archer">&#xe606;</span>wine</span>
-    
-        <span class="sidebar-tag-name" data-tags="字体"><span class="iconfont-archer">&#xe606;</span>字体</span>
-    
-        <span class="sidebar-tag-name" data-tags="winetricks"><span class="iconfont-archer">&#xe606;</span>winetricks</span>
-    
-        <span class="sidebar-tag-name" data-tags="mfc42"><span class="iconfont-archer">&#xe606;</span>mfc42</span>
-    
-        <span class="sidebar-tag-name" data-tags="JVM"><span class="iconfont-archer">&#xe606;</span>JVM</span>
-    
-        <span class="sidebar-tag-name" data-tags="ElasticSearch"><span class="iconfont-archer">&#xe606;</span>ElasticSearch</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1144,13 +1122,13 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
+        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
     
-        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
+        <span class="sidebar-category-name" data-categories="graph"><span class="iconfont-archer">&#xe60a;</span>graph</span>
     
         <span class="sidebar-category-name" data-categories="misc"><span class="iconfont-archer">&#xe60a;</span>misc</span>
     
-        <span class="sidebar-category-name" data-categories="docker"><span class="iconfont-archer">&#xe60a;</span>docker</span>
+        <span class="sidebar-category-name" data-categories="大数据"><span class="iconfont-archer">&#xe60a;</span>大数据</span>
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
