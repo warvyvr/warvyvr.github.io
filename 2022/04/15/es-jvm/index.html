@@ -17,7 +17,7 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="warvyvr, warvyvr@gmail.com">
     
-    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    <meta name="keywords" content="warvyvr,机器学习,安全">
     
     <meta name="description" content="stay hungary, stay foolish">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -435,6 +435,23 @@ height:50vh;
 <!-- City版安装代码已完成 -->
     
     
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id: "ElasticSearch中JVM使用问题", // 可选。默认为 location.href
+        owner: 'warvyvr',
+        repo: 'https://github.com/warvyvr/blog-comment',
+        oauth: {
+            client_id: '75aa52ba876e56d2ddd0',
+            client_secret: '320f00bf415383b17f45ca20ce1c0b9230151728',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
     <!-- partial('_partial/comment/changyan') -->
     <!--PC版-->
 
@@ -453,6 +470,10 @@ height:50vh;
     <div class="social">
         
     
+        
+            
+                <a href="mailto:warvyvr@gmail.com" class="iconfont-archer email" title=email ></a>
+            
         
     
         
